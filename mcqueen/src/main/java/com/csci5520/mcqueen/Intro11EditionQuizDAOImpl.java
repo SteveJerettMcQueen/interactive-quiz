@@ -18,6 +18,13 @@ import java.util.Map.Entry;
 public class Intro11EditionQuizDAOImpl implements Intro11EditionQuizDAO {
 
     @Override
+    public void find(int chapterNo, int questionNo) {
+        
+        
+        
+    }
+
+    @Override
     public void createAll(ArrayList<Intro11EditionQuiz> intro11EQs) {
 
         try {

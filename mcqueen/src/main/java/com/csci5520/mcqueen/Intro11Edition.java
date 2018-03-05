@@ -5,8 +5,6 @@
  */
 package com.csci5520.mcqueen;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author sm6668
@@ -16,7 +14,11 @@ public class Intro11Edition {
     private int chapterNo, questionNo;
     private boolean isCorrect;
     private String hostname;
-    private ArrayList<Boolean> answers;
+    private int answerA, answerB, answerC,
+            answerD, answerE;
+
+    public Intro11Edition() {
+    }
 
     public int getChapterNo() {
         return chapterNo;
@@ -50,12 +52,57 @@ public class Intro11Edition {
         this.hostname = hostname;
     }
 
-    public ArrayList<Boolean> getAnswers() {
-        return answers;
+    public int getAnswerA() {
+        return answerA;
     }
 
-    public void setAnswers(ArrayList<Boolean> answers) {
-        this.answers = answers;
+    public void setAnswerA(int answerA) {
+        this.answerA = answerA;
     }
 
+    public int getAnswerB() {
+        return answerB;
+    }
+
+    public void setAnswerB(int answerB) {
+        this.answerB = answerB;
+    }
+
+    public int getAnswerC() {
+        return answerC;
+    }
+
+    public void setAnswerC(int answerC) {
+        this.answerC = answerC;
+    }
+
+    public int getAnswerD() {
+        return answerD;
+    }
+
+    public void setAnswerD(int answerD) {
+        this.answerD = answerD;
+    }
+
+    public int getAnswerE() {
+        return answerE;
+    }
+
+    public void setAnswerE(int answerE) {
+        this.answerE = answerE;
+    }
+
+    @Override
+    public String toString() {
+        return "chapterNo: " + chapterNo
+                + "\nquestionNo: " + questionNo
+                + "\nisCorrect: " + isCorrect
+                + "\nhostname: " + hostname
+                + "\nanswerA: " + answerA
+                + "\nanswerB: " + answerB
+                + "\nanswerC: " + answerC
+                + "\nanswerD: " + answerD
+                + "\nanswerE: " + answerE;
+
+    }
 }

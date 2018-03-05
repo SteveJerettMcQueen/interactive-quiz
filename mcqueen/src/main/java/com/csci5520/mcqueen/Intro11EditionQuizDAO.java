@@ -13,6 +13,8 @@ import java.util.ArrayList;
  */
 public interface Intro11EditionQuizDAO {
 
+    public void find(int chapterNo, int questionNo);
+
     public void createAll(ArrayList<Intro11EditionQuiz> intro11EQs);
 
 }
