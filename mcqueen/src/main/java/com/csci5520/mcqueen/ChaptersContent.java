@@ -99,7 +99,7 @@ public class ChaptersContent {
         ArrayList<Intro11EditionQuiz> intro11EQs = cc.getChaptersContent();
 
         for (int i = 0; i < intro11EQs.size(); i++) {
-            System.out.println(intro11EQs.get(i));
+            System.out.println(intro11EQs.get(i).getQuestion());
             System.out.println("-------------------------------------------");
         }
 

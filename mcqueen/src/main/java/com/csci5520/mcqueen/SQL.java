@@ -13,14 +13,14 @@ import java.util.Properties;
  *
  * @author sm6668
  */
-public class SQLFactory {
+public class SQL {
 
     private static final String PROPERTY_FILE = "/sql.xml";
     private static final Properties PROPERTIES = new Properties();
 
-    static {
+    public SQL() {
         try {
-            InputStream in = SQLFactory.class.getResourceAsStream(PROPERTY_FILE);
+            InputStream in = SQL.class.getResourceAsStream(PROPERTY_FILE);
             PROPERTIES.loadFromXML(in);
         } catch (IOException ex) {
             System.out.println(ex);
@@ -28,12 +28,22 @@ public class SQLFactory {
 
     }
 
-    public static String insertIntro11EQuiz() {
-        return PROPERTIES.getProperty("insert.intro11equiz");
+    public String insertIntro11E() {
+        return PROPERTIES.getProperty("insert.intro11e");
+    }
+
+    public String findIntro11EQ() {
+        return PROPERTIES.getProperty("find.intro11eq");
+    }
+
+    public String insertIntro11EQ() {
+        return PROPERTIES.getProperty("insert.intro11eq");
     }
 
     public static void main(String[] args) {
-        System.out.println(SQLFactory.insertIntro11EQuiz());
+        SQL sql = new SQL();
+        System.out.println(sql.findIntro11EQ());
+        System.out.println(sql.insertIntro11EQ());
     }
 
 }

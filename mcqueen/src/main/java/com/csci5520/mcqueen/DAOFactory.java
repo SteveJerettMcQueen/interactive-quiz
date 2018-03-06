@@ -18,14 +18,14 @@ import java.util.Properties;
  */
 public class DAOFactory {
 
-    private static Connection CONN = null;
+    private Connection conn = null;
     private static final String PROPERTY_FILE = "/dao.xml";
     private static final String PROPERTY_URL = "mysql.jdbc.url";
     private static final String PROPERTY_DRIVER = "mysql.jdbc.driver";
     private static final String PROPERTY_USERNAME = "mysql.jdbc.username";
     private static final String PROPERTY_PASSWORD = "mysql.jdbc.password";
 
-    static {
+    public DAOFactory() {
         try {
             Properties prop = new Properties();
             InputStream in = DAOFactory.class.getResourceAsStream(PROPERTY_FILE);
@@ -37,18 +37,27 @@ public class DAOFactory {
             String password = prop.getProperty(PROPERTY_PASSWORD);
 
             Class.forName(driver);
-            CONN = DriverManager.getConnection(url, username, password);
+            conn = DriverManager.getConnection(url, username, password);
         } catch (IOException | ClassNotFoundException | SQLException ex) {
             System.out.println(ex);
         }
 
     }
 
-    public static Connection getConnection() {
-        return CONN;
+    public Connection getConnection() {
+        return conn;
+    }
+
+    public Intro11EditionDAO getIntro11EditionDAO() {
+        return new Intro11EditionDAOImpl(this);
+    }
+
+    public Intro11EditionQuizDAO getIntro11EditionQuizDAO() {
+        return new Intro11EditionQuizDAOImpl(this);
     }
 
     public static void main(String[] args) {
-        System.out.println(DAOFactory.getConnection());
+        DAOFactory daoFactory = new DAOFactory();
+        System.out.println(daoFactory.getConnection());
     }
 }

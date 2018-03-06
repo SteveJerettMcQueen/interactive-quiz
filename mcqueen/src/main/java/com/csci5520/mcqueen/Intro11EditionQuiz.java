@@ -19,9 +19,6 @@ public class Intro11EditionQuiz {
     private String answerKey;
     private String hint;
 
-    public Intro11EditionQuiz() {
-    }
-
     public String getChapterNo() {
         return chapterNo;
     }

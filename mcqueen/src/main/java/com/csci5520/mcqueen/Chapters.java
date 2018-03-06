@@ -56,6 +56,6 @@ public class Chapters {
 
     public static void main(String[] args) {
         Chapters chapters = new Chapters();
-        System.out.println(chapters.getChapters());
+        System.out.println(chapters.getChapters().size());
     }
 }

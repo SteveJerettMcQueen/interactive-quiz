@@ -12,13 +12,10 @@ package com.csci5520.mcqueen;
 public class Intro11Edition {
 
     private int chapterNo, questionNo;
-    private boolean isCorrect;
-    private String hostname;
+    private int isCorrect;
+    private String hostname, username;
     private int answerA, answerB, answerC,
             answerD, answerE;
-
-    public Intro11Edition() {
-    }
 
     public int getChapterNo() {
         return chapterNo;
@@ -36,11 +33,11 @@ public class Intro11Edition {
         this.questionNo = questionNo;
     }
 
-    public boolean isIsCorrect() {
+    public int isCorrect() {
         return isCorrect;
     }
 
-    public void setIsCorrect(boolean isCorrect) {
+    public void setIsCorrect(int isCorrect) {
         this.isCorrect = isCorrect;
     }
 
@@ -50,6 +47,14 @@ public class Intro11Edition {
 
     public void setHostname(String hostname) {
         this.hostname = hostname;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public int getAnswerA() {
@@ -97,7 +102,6 @@ public class Intro11Edition {
         return "chapterNo: " + chapterNo
                 + "\nquestionNo: " + questionNo
                 + "\nisCorrect: " + isCorrect
-                + "\nhostname: " + hostname
                 + "\nanswerA: " + answerA
                 + "\nanswerB: " + answerB
                 + "\nanswerC: " + answerC

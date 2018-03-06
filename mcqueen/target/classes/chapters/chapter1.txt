@@ -325,8 +325,11 @@ public class Test {
 }
 
 II: 
-public class Test {  public static void main(String[] args) {    
-System.out.println("Welcome to Java!");  } }
+public class Test {  
+    public static void main(String[] args) {    
+        System.out.println("Welcome to Java!");  
+    } 
+}
 
 a.	Both I and II can compile and run and display Welcome to Java, but the code in II has a better style than I.
 b.	Only the code in I can compile and run and display Welcome to Java.

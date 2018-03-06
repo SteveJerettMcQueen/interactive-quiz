@@ -9,10 +9,6 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Scanner;
 import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -74,18 +70,18 @@ public class ThreadWorkers {
             while (scan.hasNextLine()) {
                 String line = scan.nextLine();
                 questMatch = questPatt.matcher(line);
-                StringBuilder questBuilder;
+                StringBuffer questBuffer;
                 if (questMatch.lookingAt()) {
-                    questBuilder = new StringBuilder(line);
-                    questBuilder.append("\n");
+                    questBuffer = new StringBuffer(line);
+                    questBuffer.append("\n");
                     if (scan.hasNextLine()) {
                         String nextLine = scan.nextLine();
                         while (!nextLine.startsWith("a.")) {
-                            questBuilder.append(nextLine);
-                            questBuilder.append("\n");
+                            questBuffer.append(nextLine);
+                            questBuffer.append("\n");
                             nextLine = scan.nextLine();
                         }
-                        questions.add(questBuilder.toString());
+                        questions.add(questBuffer.toString());
                     }
 
                 }

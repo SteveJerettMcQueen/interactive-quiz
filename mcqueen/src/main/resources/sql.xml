@@ -6,7 +6,16 @@ and open the template in the editor.
 -->
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
-    <entry key="insert.intro11equiz">
+    <entry key="insert.intro11e">
+        INSERT INTO 
+        intro11e(chapterNo, questionNo, isCorrect, 
+        answerA, answerB, answerC, answerD, answerE)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+    </entry>
+    <entry key="find.intro11eq">
+        SELECT * FROM intro11equiz WHERE chapterNo = ? AND questionNo = ?
+    </entry>
+    <entry key="insert.intro11eq">
         INSERT INTO 
         intro11equiz(chapterNo, questionNo, question, 
         choiceA, choiceB, choiceC, choiceD, choiceE, answerKey, hint)
