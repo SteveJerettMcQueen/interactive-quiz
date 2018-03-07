@@ -18,12 +18,23 @@ public class DAOTest {
         ArrayList<Intro11EditionQuiz> intro11EQs = content.getChaptersContent();
 
         DAOFactory daoFactory = new DAOFactory();
-        Intro11EditionQuizDAO intro11EQDAO = daoFactory.getIntro11EditionQuizDAO();
-        intro11EQDAO.createAll(intro11EQs);
+//        Intro11EditionQuizDAO intro11EQDAO = daoFactory.getIntro11EditionQuizDAO();
+//        intro11EQDAO.createAll(intro11EQs);
 
 //        Intro11EditionQuiz intro11eq = intro11EQDAO.find("1", "3");
 //        System.out.println(intro11eq);
-
+//        Intro11EditionDAO intro11EDAO = daoFactory.getIntro11EditionDAO();
+//        Intro11Edition intro11e = new Intro11Edition();
+//        intro11e.setChapterNo(1);
+//        intro11e.setQuestionNo(1);
+//        intro11e.setIsCorrect(1);
+//        intro11e.setUsername("Steve");
+//        intro11e.setAnswerA(1);
+//        intro11e.setAnswerB(1);
+//        intro11e.setAnswerC(1);
+//        intro11e.setAnswerD(1);
+//        intro11e.setAnswerE(1);
+//        intro11EDAO.create(intro11e);
     }
 
 }

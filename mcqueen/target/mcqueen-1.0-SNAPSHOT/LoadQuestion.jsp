@@ -26,7 +26,7 @@
                     <div>
                         <c:forEach items="${question}" var="line">
                             <p>${line}</p>
-                        </c:forEach>                            
+                        </c:forEach> 
                     </div>
                     <!--Start of choices-->
                     <div>
@@ -37,12 +37,14 @@
                                 <span>${choice.value}</span><br>
                             </c:forEach>  
                         </div>
+                        <!--Responses-->
+                        <div>
+                            <p>${feedBack}</p>
+                        </div>
                         <div>
                             <input type="submit" name="checkMyAnswer" value="Check My Answer"> 
                         </div>
                     </div>
-                    <!--Responses-->
-                    <div></div>
                 </div>
                 <!--Hidden Values--> 
                 <input type="hidden" name="chapterNo" value="${chapterNo}"/>

@@ -30,16 +30,28 @@ public class Intro11EditionDAOImpl implements Intro11EditionDAO {
             String insertSQL = sql.insertIntro11E();
             Connection conn = daoFactory.getConnection();
             PreparedStatement statement = conn.prepareStatement(insertSQL);
-//            statement.setString(1, intro11e.getChapterNo());
-//            statement.setString(2, intro11e.getQuestionNo());
-//            statement.setString(3, intro11e.isCorrect());
-//            statement.setString(4, intro11e.getAnswerA());
-//            statement.setString(5, intro11e.getAnswerB());
-//            statement.setString(6, intro11e.getAnswerC());
-//            statement.setString(7, intro11e.getAnswerD());
-//            statement.setString(8, intro11e.getAnswerE());
+
+            String chNo = Integer.toString(intro11e.getChapterNo());
+            String qNo = Integer.toString(intro11e.getQuestionNo());
+            String isCorrect = Integer.toString(intro11e.isCorrect());
+            String ansA = Integer.toString(intro11e.getAnswerA());
+            String ansB = Integer.toString(intro11e.getAnswerB());
+            String ansC = Integer.toString(intro11e.getAnswerC());
+            String ansD = Integer.toString(intro11e.getAnswerD());
+            String ansE = Integer.toString(intro11e.getAnswerE());
+
+            statement.setString(1, chNo);
+            statement.setString(2, qNo);
+            statement.setString(3, isCorrect);
+            statement.setString(4, ansA);
+            statement.setString(5, ansB);
+            statement.setString(6, ansC);
+            statement.setString(7, ansD);
+            statement.setString(8, ansE);
+            statement.executeUpdate();
 
         } catch (SQLException ex) {
+            System.out.println(ex);
 
         }
     }

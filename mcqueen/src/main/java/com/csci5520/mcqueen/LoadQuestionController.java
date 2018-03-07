@@ -6,7 +6,6 @@
 package com.csci5520.mcqueen;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Map;
 import java.util.Objects;
 import javax.servlet.ServletException;
@@ -23,55 +22,14 @@ public class LoadQuestionController extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     private DAOFactory daoFactory;
+    private Intro11EditionDAO intro11EDAO;
     private Intro11EditionQuizDAO intro11EQDAO;
 
     @Override
     public void init() {
         daoFactory = new DAOFactory();
         intro11EQDAO = daoFactory.getIntro11EditionQuizDAO();
-    }
-
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-
-        try {
-            // Load the question
-            String chapterNo = request.getParameter("chapterNo");
-            String questionNo = request.getParameter("questionNo");
-            if (chapterNo != null && questionNo != null) {
-                loadQuestion(request, response, chapterNo, questionNo);
-            } else {
-                loadQuestion(request, response, "1", "1");
-            }
-
-            // Check submitted answer
-            String submission = request.getParameter("checkMyAnswer");
-            String[] answers = request.getParameterValues("choices");
-            String choiceType = request.getParameter("choiceType");
-            if (submission != null && answers != null) {
-                if (submission.equals("Check My Answer")) {
-                    switch (choiceType) {
-                        case "radio":
-                            recordAnswer(request, answers);
-                            break;
-                        case "checkbox":
-                            recordAnswer(request, answers);
-                            break;
-                        default:
-                            System.out.println("Unknown choice type!");
-                            break;
-                    }
-                }
-            } else {
-                System.out.println("Don't Grade Question!");
-            }
-
-        } catch (IOException | ServletException ex) {
-            System.out.println(ex);
-            //Send dispacter to error page Loading question wasn't successful
-
-        }
+        intro11EDAO = daoFactory.getIntro11EditionDAO();
     }
 
     @Override
@@ -91,11 +49,57 @@ public class LoadQuestionController extends HttpServlet {
         return "Short description";
     }
 
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        response.setContentType("text/html;charset=UTF-8");
+        try {
+
+            // Load the question
+            String chapterNo = request.getParameter("chapterNo");
+            String questionNo = request.getParameter("questionNo");
+            if (chapterNo != null && questionNo != null) {
+                loadQuestion(request, response, chapterNo, questionNo);
+            } else {
+                loadQuestion(request, response, "1", "37");
+            }
+
+            // Check submitted answer
+            String submission = request.getParameter("checkMyAnswer");
+            String[] answers = request.getParameterValues("choices");
+            String choiceType = request.getParameter("choiceType");
+            if (submission != null && answers != null) {
+                if (submission.equals("Check My Answer")) {
+                    switch (choiceType) {
+                        case "radio":
+                            recordAnswer(request, answers);
+//                            sendFeedBack(request, response, answers);
+                            break;
+                        case "checkbox":
+                            recordAnswer(request, answers);
+//                            sendFeedBack(request, response, answers);
+                            break;
+                        default:
+                            System.out.println("Unknown choice type!");
+                            break;
+                    }
+                }
+            } else {
+                //Send response to answer question before submission
+
+            }
+
+        } catch (IOException | ServletException ex) {
+            System.out.println(ex);
+            //Send dispacter to error page Loading question wasn't successful
+
+        }
+    }
+
     private void loadQuestion(HttpServletRequest request, HttpServletResponse response,
             String chapterNo, String questionNo) throws ServletException, IOException {
 
         Intro11EditionQuiz intro11eq = intro11EQDAO.find(chapterNo, questionNo);
-
         String[] question = intro11eq.getQuestion().split("\n");
         Map<String, String> choices = intro11eq.getChoices();
         choices.values().removeIf(Objects::isNull);
@@ -111,10 +115,11 @@ public class LoadQuestionController extends HttpServlet {
         request.setAttribute("key", key);
         request.setAttribute("hint", hint);
         request.getRequestDispatcher("LoadQuestion.jsp").forward(request, response);
-
     }
 
-    private void recordAnswer(HttpServletRequest request, String[] answers) throws ServletException, IOException {
+    private void recordAnswer(HttpServletRequest request, String[] answers)
+            throws ServletException, IOException {
+        
         int chNo = Integer.parseInt(request.getParameter("chapterNo"));
         int qNo = Integer.parseInt(request.getParameter("questionNo"));
         String key = request.getParameter("key");
@@ -151,6 +156,22 @@ public class LoadQuestionController extends HttpServlet {
             intro11e.setIsCorrect(0);
         }
 
-        System.out.println(intro11e);
+        //Store in database
+        intro11EDAO.create(intro11e);
     }
+
+    private void sendFeedBack(HttpServletRequest request, HttpServletResponse response, String[] answers)
+            throws ServletException, IOException {
+//        
+//        String key = request.getParameter("key");
+//        String ans = String.join("", answers);
+//        if (ans.equals(key)) {
+//            request.setAttribute("feedBack", "Your answer is correct!");
+//            request.getRequestDispatcher("LoadQuestion.jsp").forward(request, null);
+//        } else {
+//            request.setAttribute("feedBack", "Your answer " + ans + " is incorrect!");
+//            request.getRequestDispatcher("LoadQuestion.jsp").forward(request, null);
+//        }
+    }
+
 }
