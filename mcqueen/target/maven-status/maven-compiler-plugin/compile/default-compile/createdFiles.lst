@@ -1,12 +1,12 @@
-com\csci5520\mcqueen\OneQuestionController.class
+com\csci5520\mcqueen\OneQuestion.class
 com\csci5520\mcqueen\Intro11EditionQuizDAOImpl.class
 com\csci5520\mcqueen\DAOFactory.class
 com\csci5520\mcqueen\Intro11EditionDAOImpl.class
 com\csci5520\mcqueen\SQL.class
 com\csci5520\mcqueen\ThreadWorkers$QuestionFinder.class
 com\csci5520\mcqueen\ThreadWorkers.class
+com\csci5520\mcqueen\LoadQuestion.class
 com\csci5520\mcqueen\ThreadWorkers$KeyHintFinder.class
-com\csci5520\mcqueen\LoadQuestionController.class
 com\csci5520\mcqueen\ThreadWorkers$ChapterFinder.class
 com\csci5520\mcqueen\Intro11EditionQuizDAO.class
 com\csci5520\mcqueen\Chapters.class

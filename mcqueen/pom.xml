@@ -29,8 +29,11 @@
             <version>2.5</version>
             <scope>provided</scope>
         </dependency>
-
         
+        <!-- https://mvnrepository.com/artifact/org.apache.tapestry/tapestry-json -->
+
+        <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+
     </dependencies>
 
     <build>

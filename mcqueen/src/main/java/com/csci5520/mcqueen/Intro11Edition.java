@@ -14,8 +14,7 @@ public class Intro11Edition {
     private int chapterNo, questionNo;
     private int isCorrect;
     private String hostname, username;
-    private int answerA, answerB, answerC,
-            answerD, answerE;
+    private int answerA, answerB, answerC, answerD, answerE;
 
     public int getChapterNo() {
         return chapterNo;

@@ -18,8 +18,8 @@ public class DAOTest {
         ArrayList<Intro11EditionQuiz> intro11EQs = content.getChaptersContent();
 
         DAOFactory daoFactory = new DAOFactory();
-//        Intro11EditionQuizDAO intro11EQDAO = daoFactory.getIntro11EditionQuizDAO();
-//        intro11EQDAO.createAll(intro11EQs);
+        Intro11EditionQuizDAO intro11EQDAO = daoFactory.getIntro11EditionQuizDAO();
+        intro11EQDAO.createAll(intro11EQs);
 
 //        Intro11EditionQuiz intro11eq = intro11EQDAO.find("1", "3");
 //        System.out.println(intro11eq);
