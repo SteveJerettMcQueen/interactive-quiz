@@ -52,39 +52,49 @@ public class LoadQuestion extends HttpServlet {
             throws ServletException, IOException {
 
         response.setContentType("text/html;charset=UTF-8");
-        if (initChapterNo != null && initQuestionNo != null) {
-            List<String> chapterNos = intro11EQDAO.findAllChapterNos();
-            List<String> questionNos = intro11EQDAO.findQuestionNosBy(initChapterNo);
-            intro11EQ = intro11EQDAO.findQuizBy(initChapterNo, initQuestionNo);
-            String[] question = intro11EQ.getQuestion().split("\n");
-            String[] questPart = Arrays.copyOfRange(question, 0, 1);
-            String[] questPart2 = Arrays.copyOfRange(question, 1, question.length);
-            StringBuilder builder = new StringBuilder();
-            for (String s : questPart2) {
-                builder.append(s);
-                builder.append("\n");
+        String chapterNo = request.getParameter("chapterNo");
+        String questionNo = request.getParameter("questionNo");
+        String submission = request.getParameter("getQuestion");
+        if (submission != null && chapterNo != null && questionNo != null) {
+            if (submission.equals("Get Question")) {
+                loadQuestion(request, response, chapterNo, questionNo);
             }
-            String questPart2Str = builder.toString();
-
-            Map<String, String> choices = intro11EQ.getChoices();
-            choices.values().removeIf(Objects::isNull);
-            String choiceType = intro11EQ.getAnswerKey().length() == 1 ? "radio" : "checkbox";
-
-            request.setAttribute("chapterNos", chapterNos);
-            request.setAttribute("questionNos", questionNos);
-            request.setAttribute("intro11EQ", intro11EQ);
-            request.setAttribute("questionPart", questPart[0]);
-            request.setAttribute("questionPart2", questPart2Str);
-            request.setAttribute("choices", choices);
-            request.setAttribute("choiceType", choiceType);
-            request.getRequestDispatcher("OneQuestion.jsp").forward(request, response);
-
+        } else if (initChapterNo != null && initQuestionNo != null) {
+            loadQuestion(request, response, initChapterNo, initQuestionNo);
         } else {
-
-            request.setAttribute("error", "Initial parameters are null!");
-            request.getRequestDispatcher("LoadError.jsp").forward(request, response);
-
+            request.setAttribute("error", "Inital parameters are null!");
+            request.getRequestDispatcher("OneQuestion.jsp").forward(request, response);
         }
+    }
+
+    private void loadQuestion(HttpServletRequest request, HttpServletResponse response,
+            String chapterNo, String questionNo) throws ServletException, IOException {
+
+        List<String> chapterNos = intro11EQDAO.findAllChapterNos();
+        List<String> questionNos = intro11EQDAO.findQuestionNosBy(chapterNo);
+        intro11EQ = intro11EQDAO.findQuizBy(chapterNo, questionNo);
+        String[] question = intro11EQ.getQuestion().split("\n");
+        String[] questPart = Arrays.copyOfRange(question, 0, 1);
+        String[] questPart2 = Arrays.copyOfRange(question, 1, question.length);
+        StringBuilder builder = new StringBuilder();
+        for (String s : questPart2) {
+            builder.append(s);
+            builder.append("\n");
+        }
+        String questPart2Str = builder.toString();
+        Map<String, String> choices = intro11EQ.getChoices();
+        choices.values().removeIf(Objects::isNull);
+        String choiceType = intro11EQ.getAnswerKey().length() == 1 ? "radio" : "checkbox";
+
+        request.setAttribute("chapterNos", chapterNos);
+        request.setAttribute("questionNos", questionNos);
+        request.setAttribute("intro11EQ", intro11EQ);
+        request.setAttribute("questionPart", questPart[0]);
+        request.setAttribute("questionPart2", questPart2Str);
+        request.setAttribute("choices", choices);
+        request.setAttribute("choiceType", choiceType);
+        request.getRequestDispatcher("OneQuestion.jsp").forward(request, response);
+
     }
 
 }

@@ -37,11 +37,10 @@ function callServlet() {
     };
 
     function onSuccess(response) {
-        var responses = response.split("\n");
-        var feedBack = responses[0];
-        var message = responses[1];
-        var hint = responses[2];
-        var answerKey = responses[3];
+        var feedBack = response[0];
+        var message = response[1];
+        var hint = response[2];
+        var answerKey = response[3];
 
         function showExplanation() {
             $('#feedBack').append("<hr>");
@@ -84,8 +83,9 @@ function callServlet() {
 
     $.ajax({
         type: 'POST',
-        url: 'OneQuestion',
+        url: 'QuestionForm',
         data: data,
+        dataType: 'json',
         success: onSuccess,
         error: onError
     });

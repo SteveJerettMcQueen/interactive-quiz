@@ -54,24 +54,15 @@
 
         <!--Controls-->
         <div class="row">
-            <div>
-                <button id="submitBtn" 
-                        class="btn btn-sm btn-primary" 
-                        name="checkMyAnswer" 
-                        value="Check My Answer"
-                        type="button">Check My Answer</button> 
-                <small id="submitHelpBlock" class="form-text text-muted">
-                    You must choose at least one answer!
-                </small>
-            </div>
+            <button id="submitBtn" 
+                    class="btn btn-sm btn-primary" 
+                    name="checkMyAnswer" 
+                    value="Check My Answer"
+                    type="button">Check My Answer</button> 
+            <p>&emsp;</p>   
+            <small id="submitHelpBlock" class="form-text text-muted">
+                You must choose at least one answer!
+            </small>
         </div>
-
-        <!--Hidden Values--> 
-        <input id="chapNo" name="chapterNo" value="${intro11EQ.chapterNo}" type="hidden"/>
-        <input id="questNo" name="questionNo"value="${intro11EQ.questionNo}" type="hidden"/>
-        <input id="choiceType" name="choiceType" value="${choiceType}" type="hidden"/>
-        <input id="answerKey" name="answerKey" value="${intro11EQ.answerKey}"type="hidden"/>
-        <input id="hint" name="hint" value="${intro11EQ.hint}" type="hidden"/>
-
     </body>
 </html>

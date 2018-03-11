@@ -16,20 +16,28 @@
         </init-param>
         <init-param>
             <param-name>QUESTION_NO</param-name>
-            <param-value>37</param-value>
+            <param-value>1</param-value>
         </init-param>
     </servlet>
     <servlet>
-        <servlet-name>OneQuestion</servlet-name>
-        <servlet-class>com.csci5520.mcqueen.OneQuestion</servlet-class>
+        <servlet-name>QuestionChooser</servlet-name>
+        <servlet-class>com.csci5520.mcqueen.QuestionChooser</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>QuestionForm</servlet-name>
+        <servlet-class>com.csci5520.mcqueen.QuestionForm</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoadQuestion</servlet-name>
         <url-pattern>/LoadQuestion</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>OneQuestion</servlet-name>
-        <url-pattern>/OneQuestion</url-pattern>
+        <servlet-name>QuestionChooser</servlet-name>
+        <url-pattern>/QuestionChooser</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>QuestionForm</servlet-name>
+        <url-pattern>/QuestionForm</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

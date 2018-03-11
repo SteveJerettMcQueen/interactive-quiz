@@ -1,7 +1,12 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.csci5520.mcqueen;
 
+import com.google.gson.Gson;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -9,9 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author sm6668
+ * @author Steve
  */
-public class OneQuestion extends HttpServlet {
+public class QuestionForm extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
@@ -49,7 +54,6 @@ public class OneQuestion extends HttpServlet {
         String questionNo = request.getParameter("questionNo");
         String answerKey = request.getParameter("answerKey");
         String hint = request.getParameter("hint");
-
         String answers = request.getParameter("answers");
         String submission = request.getParameter("checkMyAnswer");
         if (submission != null && answers != null) {
@@ -57,8 +61,6 @@ public class OneQuestion extends HttpServlet {
                 recordAnswer(chapterNo, questionNo, answers, answerKey);
                 sendFeedBack(response, answers, answerKey, hint);
             }
-        } else {
-            //Send response to answer question before submission
         }
 
     }
@@ -100,25 +102,18 @@ public class OneQuestion extends HttpServlet {
     private void sendFeedBack(HttpServletResponse response, String answers, String answerKey, String hint)
             throws ServletException, IOException {
 
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-
-        String feedBack;
+        response.setContentType("application/json;charset=UTF-8");
+        String[] feedBack = new String[4];
+        feedBack[2] = hint;
+        feedBack[3] = answerKey;
         if (answers.equals(answerKey)) {
-            feedBack
-                    = "correct"
-                    + "\nYour answer is correct!"
-                    + "\n" + hint
-                    + "\n" + answerKey;
+            feedBack[0] = "correct";
+            feedBack[1] = "Your answer is correct!";
         } else {
-            feedBack
-                    = "incorrect"
-                    + "\nYour answer " + answers + " is incorrect!"
-                    + "\n" + hint
-                    + "\n" + answerKey;
+            feedBack[0] = "incorrect";
+            feedBack[1] = "Your answer " + answers + " is incorrect!";
         }
-
-        out.write(feedBack);
+        response.getWriter().write(new Gson().toJson(feedBack));
     }
 
 }

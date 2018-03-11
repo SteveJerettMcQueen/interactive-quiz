@@ -14,5 +14,6 @@ com\csci5520\mcqueen\ChaptersContent.class
 com\csci5520\mcqueen\Intro11EditionDAO.class
 com\csci5520\mcqueen\Intro11EditionQuiz.class
 com\csci5520\mcqueen\Intro11Edition.class
+com\csci5520\mcqueen\QuestionChooser.class
 com\csci5520\mcqueen\ThreadWorkers$ChoiceFinder.class
 com\csci5520\mcqueen\DAOTest.class

@@ -28,6 +28,7 @@
 
     <!--Body--> 
     <body>
+        
         <!--Page Content-->
         <div class="container">
             <!--Question Chooser-->
@@ -36,6 +37,13 @@
             <!--Question Form-->
             <jsp:include flush="true" page="QuestionForm.jsp"/>
         </div>   
+
+        <!--Hidden Values--> 
+        <input id="chapNo" name="chapterNo" value="${intro11EQ.chapterNo}" type="hidden"/>
+        <input id="questNo" name="questionNo"value="${intro11EQ.questionNo}" type="hidden"/>
+        <input id="choiceType" name="choiceType" value="${choiceType}" type="hidden"/>
+        <input id="answerKey" name="answerKey" value="${intro11EQ.answerKey}"type="hidden"/>
+        <input id="hint" name="hint" value="${intro11EQ.hint}" type="hidden"/>
 
         <!--JQuery-->
         <script
