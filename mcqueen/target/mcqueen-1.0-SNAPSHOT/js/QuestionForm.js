@@ -1,3 +1,10 @@
+/* 
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+/* global hljs */
+
 $(document).ready(function () {
 
     // Load Highlighting
@@ -5,13 +12,13 @@ $(document).ready(function () {
         hljs.highlightBlock(block);
     });
 
-    // Read Submit Button
+    // Ready Submit Button
     $('#submitBtn').click(function () {
         if ($('input:checkbox[name=answers]:checked').length > 0 ||
                 $('input:radio[name=answers]').is(':checked')) {
             callServlet();
         } else {
-//            getError();
+            alert("Please choose answer before submitting!");
         }
     });
 
@@ -100,14 +107,3 @@ function getAnswers() {
 
 }
 
-function getError() {
-//    $('#errorBox').append("<div id='error' role='alert'><p id='errorMessage'></p></div>");
-//    $('#error').addClass("alert alert-info");
-//    $('#error').append("<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>");
-//    $('#errorMessage').html("Please answer the question!");
-//    window.setTimeout(function () {
-//        $("#error").fadeTo(500, 0).slideUp(500, function () {
-//            $(this).remove();
-//        });
-//    }, 2000);
-}

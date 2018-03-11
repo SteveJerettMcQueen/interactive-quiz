@@ -32,6 +32,18 @@ public class SQL {
         return PROPERTIES.getProperty("insert.intro11e");
     }
 
+    public String findAllChapterNos() {
+        return PROPERTIES.getProperty("findAll.chapter.nos");
+    }
+
+    public String findQuestionNos() {
+        return PROPERTIES.getProperty("find.question.nos");
+    }
+
+    public String findAllQuestionNos() {
+        return PROPERTIES.getProperty("findAll.question.nos");
+    }
+
     public String findIntro11EQ() {
         return PROPERTIES.getProperty("find.intro11eq");
     }

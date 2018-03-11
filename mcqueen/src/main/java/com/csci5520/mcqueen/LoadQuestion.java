@@ -2,9 +2,9 @@ package com.csci5520.mcqueen;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,12 +18,15 @@ public class LoadQuestion extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
+    private String initChapterNo, initQuestionNo;
     private DAOFactory daoFactory;
     private Intro11EditionQuizDAO intro11EQDAO;
     private Intro11EditionQuiz intro11EQ;
 
     @Override
     public void init() {
+        initChapterNo = this.getInitParameter("CHAPTER_NO");
+        initQuestionNo = this.getInitParameter("QUESTION_NO");
         daoFactory = new DAOFactory();
         intro11EQDAO = daoFactory.getIntro11EditionQuizDAO();
     }
@@ -49,12 +52,10 @@ public class LoadQuestion extends HttpServlet {
             throws ServletException, IOException {
 
         response.setContentType("text/html;charset=UTF-8");
-        ServletContext config = this.getServletContext();
-        String chapterNo = config.getInitParameter("CHAPTER_NO");
-        String questionNo = config.getInitParameter("QUESTION_NO");
-
-        if (chapterNo != null && questionNo != null) {
-            intro11EQ = intro11EQDAO.find(chapterNo, questionNo);
+        if (initChapterNo != null && initQuestionNo != null) {
+            List<String> chapterNos = intro11EQDAO.findAllChapterNos();
+            List<String> questionNos = intro11EQDAO.findQuestionNosBy(initChapterNo);
+            intro11EQ = intro11EQDAO.findQuizBy(initChapterNo, initQuestionNo);
             String[] question = intro11EQ.getQuestion().split("\n");
             String[] questPart = Arrays.copyOfRange(question, 0, 1);
             String[] questPart2 = Arrays.copyOfRange(question, 1, question.length);
@@ -69,12 +70,19 @@ public class LoadQuestion extends HttpServlet {
             choices.values().removeIf(Objects::isNull);
             String choiceType = intro11EQ.getAnswerKey().length() == 1 ? "radio" : "checkbox";
 
+            request.setAttribute("chapterNos", chapterNos);
+            request.setAttribute("questionNos", questionNos);
             request.setAttribute("intro11EQ", intro11EQ);
             request.setAttribute("questionPart", questPart[0]);
             request.setAttribute("questionPart2", questPart2Str);
             request.setAttribute("choices", choices);
             request.setAttribute("choiceType", choiceType);
             request.getRequestDispatcher("OneQuestion.jsp").forward(request, response);
+
+        } else {
+
+            request.setAttribute("error", "Initial parameters are null!");
+            request.getRequestDispatcher("LoadError.jsp").forward(request, response);
 
         }
     }

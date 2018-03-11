@@ -12,6 +12,15 @@ and open the template in the editor.
         answerA, answerB, answerC, answerD, answerE)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?)
     </entry>
+    <entry key="findAll.chapter.nos">
+        SELECT DISTINCT chapterNo FROM intro11equiz
+    </entry>
+    <entry key="find.question.nos">
+        SELECT questionNo FROM intro11equiz WHERE chapterNo = ?
+    </entry>
+    <entry key="findAll.question.nos">
+        SELECT chapterNo, questionNo FROM intro11equiz
+    </entry>
     <entry key="find.intro11eq">
         SELECT * FROM intro11equiz WHERE chapterNo = ? AND questionNo = ?
     </entry>

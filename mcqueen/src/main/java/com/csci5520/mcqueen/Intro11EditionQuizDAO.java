@@ -5,7 +5,6 @@
  */
 package com.csci5520.mcqueen;
 
-import com.csci5520.mcqueen.Intro11EditionQuiz;
 import java.util.ArrayList;
 
 /**
@@ -14,7 +13,13 @@ import java.util.ArrayList;
  */
 public interface Intro11EditionQuizDAO {
 
-    public Intro11EditionQuiz find(String chapterNo, String questionNo);
+    public ArrayList<String> findAllChapterNos();
+
+    public ArrayList<String> findQuestionNosBy(String chapterNo);
+
+    public ArrayList<String[]> findAllQuestionNos();
+
+    public Intro11EditionQuiz findQuizBy(String chapterNo, String questionNo);
 
     public void createAll(ArrayList<Intro11EditionQuiz> intro11EQs);
 

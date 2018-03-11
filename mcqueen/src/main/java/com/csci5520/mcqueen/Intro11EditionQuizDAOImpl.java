@@ -5,15 +5,12 @@
  */
 package com.csci5520.mcqueen;
 
-import com.csci5520.mcqueen.DAOFactory;
-import com.csci5520.mcqueen.Intro11EditionQuiz;
-import com.csci5520.mcqueen.SQL;
-import com.csci5520.mcqueen.Intro11EditionQuizDAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map.Entry;
 
@@ -32,14 +29,85 @@ public class Intro11EditionQuizDAOImpl implements Intro11EditionQuizDAO {
     }
 
     @Override
-    public Intro11EditionQuiz find(String chapterNo, String questionNo) {
+    public ArrayList<String> findAllChapterNos() {
+        ArrayList<String> chapterNos = null;
+        try {
+            String findSQL = sql.findAllChapterNos();
+            Connection conn = daoFactory.getConnection();
+            PreparedStatement statement = conn.prepareStatement(findSQL);
+            ResultSet rs = statement.executeQuery();
+
+            chapterNos = new ArrayList();
+            String[] elem;
+            while (rs.next()) {
+                chapterNos.add(rs.getString("chapterNo"));
+            }
+
+        } catch (Exception ex) {
+            System.out.println(ex);
+            return chapterNos;
+        }
+
+        return chapterNos;
+    }
+
+    @Override
+    public ArrayList<String> findQuestionNosBy(String chapterNo) {
+        ArrayList<String> questionNos = null;
+        try {
+            String findSQL = sql.findQuestionNos();
+            Connection conn = daoFactory.getConnection();
+            PreparedStatement statement = conn.prepareStatement(findSQL);
+            statement.setString(1, chapterNo);
+            ResultSet rs = statement.executeQuery();
+
+            questionNos = new ArrayList();
+            while (rs.next()) {
+                questionNos.add(rs.getString("questionNo"));
+            }
+
+        } catch (Exception ex) {
+            System.out.println(ex);
+            return questionNos;
+        }
+
+        return questionNos;
+    }
+
+    @Override
+    public ArrayList<String[]> findAllQuestionNos() {
+        ArrayList<String[]> questionNos = null;
+        try {
+            String findSQL = sql.findAllQuestionNos();
+            Connection conn = daoFactory.getConnection();
+            PreparedStatement statement = conn.prepareStatement(findSQL);
+            ResultSet rs = statement.executeQuery();
+
+            questionNos = new ArrayList();
+            String[] elem;
+            while (rs.next()) {
+                elem = new String[2];
+                elem[0] = rs.getString("chapterNo");
+                elem[1] = rs.getString("questionNo");
+                questionNos.add(elem);
+            }
+
+        } catch (Exception ex) {
+            System.out.println(ex);
+            return questionNos;
+        }
+
+        return questionNos;
+    }
+
+    @Override
+    public Intro11EditionQuiz findQuizBy(String chapterNo, String questionNo) {
         Intro11EditionQuiz intro11EQ = null;
 
         try {
             String findSQL = sql.findIntro11EQ();
             Connection conn = daoFactory.getConnection();
             PreparedStatement statement = conn.prepareStatement(findSQL);
-
             statement.setString(1, chapterNo);
             statement.setString(2, questionNo);
             ResultSet rs = statement.executeQuery();

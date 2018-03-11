@@ -7,18 +7,17 @@
         <welcome-file>index.htm</welcome-file>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
-    <!--Context-->
-    <context-param>
-        <param-name>CHAPTER_NO</param-name>
-        <param-value>1</param-value>
-    </context-param>
-    <context-param>
-        <param-name>QUESTION_NO</param-name>
-        <param-value>3</param-value>
-    </context-param>
     <servlet>
         <servlet-name>LoadQuestion</servlet-name>
         <servlet-class>com.csci5520.mcqueen.LoadQuestion</servlet-class>
+        <init-param>
+            <param-name>CHAPTER_NO</param-name>
+            <param-value>1</param-value>
+        </init-param>
+        <init-param>
+            <param-name>QUESTION_NO</param-name>
+            <param-value>37</param-value>
+        </init-param>
     </servlet>
     <servlet>
         <servlet-name>OneQuestion</servlet-name>

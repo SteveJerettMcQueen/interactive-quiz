@@ -15,11 +15,13 @@ public class DAOTest {
 
     public static void main(String[] args) {
         ChaptersContent content = new ChaptersContent();
-        ArrayList<Intro11EditionQuiz> intro11EQs = content.getChaptersContent();
+//        ArrayList<Intro11EditionQuiz> intro11EQs = content.getChaptersContent();
 
         DAOFactory daoFactory = new DAOFactory();
         Intro11EditionQuizDAO intro11EQDAO = daoFactory.getIntro11EditionQuizDAO();
-        intro11EQDAO.createAll(intro11EQs);
+//        intro11EQDAO.createAll(intro11EQs);
+
+        System.out.println(intro11EQDAO.findAllChapterNos());
 
 //        Intro11EditionQuiz intro11eq = intro11EQDAO.find("1", "3");
 //        System.out.println(intro11eq);
