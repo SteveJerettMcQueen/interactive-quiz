@@ -62,8 +62,8 @@ public class LoadQuestion extends HttpServlet {
         } else if (initChapterNo != null && initQuestionNo != null) {
             loadQuestion(request, response, initChapterNo, initQuestionNo);
         } else {
-            request.setAttribute("error", "Inital parameters are null!");
-            request.getRequestDispatcher("OneQuestion.jsp").forward(request, response);
+            request.setAttribute("error", "Chapter and question number does not exist!");
+            request.getRequestDispatcher("LoadError.jsp").forward(request, response);
         }
     }
 

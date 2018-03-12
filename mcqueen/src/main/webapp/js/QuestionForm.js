@@ -52,7 +52,7 @@ function callServlet() {
             $('#message').unbind('click');
         }
 
-        $('#feedBackBox').append("<p id='feedBack' role='alert'></p>");
+        $('#feedBackBox').append("<div id='feedBack' role='alert'></div>");
         $('#feedBack').append("<h6 class='alert-heading'>Feed Back:</h6>");
         $('#feedBack').append("<p id='message'>\n\
                 <a href='#' class='alert-link'>" + message + "</a>\n\

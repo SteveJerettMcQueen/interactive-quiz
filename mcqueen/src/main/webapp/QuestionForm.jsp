@@ -18,6 +18,9 @@
         <!--Title-->
         <div class="row"><h5>Single & Multiple-Choice Questions</h5></div>
         <hr>
+        <small id="submitHelpBlock" class="alert alert-warning form-text text-muted">
+            You must choose at least one answer!
+        </small>
 
         <!--Start of question-->
         <div class="row"><p>${questionPart}</p></div>
@@ -49,20 +52,16 @@
 
         <!--Responses-->
         <div class="row">
-            <div id="feedBackBox" class="row"></div>
+            <div id="feedBackBox"></div>
         </div>
 
         <!--Controls-->
         <div class="row">
             <button id="submitBtn" 
-                    class="btn btn-sm btn-primary" 
+                    class="btn btn-primary" 
                     name="checkMyAnswer" 
                     value="Check My Answer"
                     type="button">Check My Answer</button> 
-            <p>&emsp;</p>   
-            <small id="submitHelpBlock" class="form-text text-muted">
-                You must choose at least one answer!
-            </small>
         </div>
     </body>
 </html>
