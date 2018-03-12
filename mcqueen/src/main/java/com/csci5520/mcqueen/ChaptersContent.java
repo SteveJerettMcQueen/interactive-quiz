@@ -28,7 +28,7 @@ public class ChaptersContent {
     private final ArrayList<Intro11EditionQuiz> intro11EQs;
 
     public ChaptersContent() {
-        exec = Executors.newSingleThreadExecutor();
+        exec = Executors.newFixedThreadPool(4);
         workers = new ThreadWorkers();
         ch = new Chapters();
         intro11EQs = new ArrayList();
@@ -95,14 +95,4 @@ public class ChaptersContent {
         return intro11EQs;
     }
 
-    public static void main(String[] args) {
-        ChaptersContent cc = new ChaptersContent();
-        ArrayList<Intro11EditionQuiz> intro11EQs = cc.getChaptersContent();
-
-        for (int i = 0; i < intro11EQs.size(); i++) {
-            System.out.println(intro11EQs.get(i).getQuestion());
-            System.out.println("-------------------------------------------");
-        }
-
-    }
 }

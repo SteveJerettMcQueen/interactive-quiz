@@ -1,4 +1,3 @@
-com\csci5520\mcqueen\OneQuestion.class
 com\csci5520\mcqueen\Intro11EditionQuizDAOImpl.class
 com\csci5520\mcqueen\DAOFactory.class
 com\csci5520\mcqueen\Intro11EditionDAOImpl.class
@@ -15,5 +14,6 @@ com\csci5520\mcqueen\Intro11EditionDAO.class
 com\csci5520\mcqueen\Intro11EditionQuiz.class
 com\csci5520\mcqueen\Intro11Edition.class
 com\csci5520\mcqueen\QuestionChooser.class
+com\csci5520\mcqueen\QuestionForm.class
 com\csci5520\mcqueen\ThreadWorkers$ChoiceFinder.class
 com\csci5520\mcqueen\DAOTest.class

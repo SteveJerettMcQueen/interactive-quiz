@@ -54,8 +54,4 @@ public class Chapters {
         return chapters;
     }
 
-    public static void main(String[] args) {
-        Chapters chapters = new Chapters();
-        System.out.println(chapters.getChapters().size());
-    }
 }
